@@ -1,60 +1,93 @@
+Project Setup and Usage
+This guide will help you set up the project, run the server, and troubleshoot any issues you may encounter.
 
-npm run build
-npm run start
+Prerequisites
+Before you start, ensure you have the following installed:
+
+Node.js for running front-end build scripts.
+Python (version 3.8 or higher) for running the back-end Django server.
+Conda for managing Python environments.
+Git for version control.
+Project Setup
+1. Clone the Repository
+bash
+Copy code
+git clone <repository_url>
 cd ecom-proj-master
-git ls-files --stage | grep 160000
-git submodule status
-conda deactivate
+2. Install Node Dependencies
+To build the front-end assets, run the following command:
+
+bash
+Copy code
+npm run build
+3. Start the Front-End Server
+To start the front-end server, run:
+
+bash
+Copy code
+npm run start
+4. Set Up Python Virtual Environment
+Create and activate a Python virtual environment to isolate dependencies:
+
+bash
+Copy code
+# Create a new virtual environment
+python -m venv test
+
+# Activate the environment
+test\Scripts\activate  # On Windows
+source test/bin/activate  # On Mac/Linux
+5. Install Python Dependencies
+If you are using Django and need to install required dependencies, run:
+
+bash
+Copy code
+pip install django
+6. Check Django Version
+To verify the installed Django version:
+
+bash
+Copy code
 django-admin --version
-(base) PS D:\telusko> conda deactivate
-PS D:\telusko> django-admin --version
-5.0.3
-PS D:\telusko> python -m venv test
-PS D:\telusko> test\Scripts\activate
-(test) PS D:\telusko> cd D:\telusko\projects\telusko
-(test) PS D:\telusko\projects\telusko> python manage.py runserver
-    from django.core.management import execute_from_command_line
+7. Run Django Development Server
+To run the Django server:
+
+bash
+Copy code
+python manage.py runserver
+Git Submodules
+If the project uses Git submodules, you may need to check their status or update them. Use the following commands:
+
+bash
+Copy code
+# Check the status of submodules
+git submodule status
+
+# List staged files with submodules
+git ls-files --stage | grep 160000
+Deactivating the Virtual Environment
+When you're done, you can deactivate the virtual environment by running:
+
+bash
+Copy code
+conda deactivate
+# or
+deactivate
+Troubleshooting
+Issue: ModuleNotFoundError: No module named 'django'
+If you see the error message:
+
+vbnet
+Copy code
 ModuleNotFoundError: No module named 'django'
+This indicates that Django is not installed in your virtual environment. You can resolve this by running:
 
-The above exception was the direct cause of the following exception:
-
-Traceback (most recent call last):
-  File "D:\telusko\projects\telusko\manage.py", line 22, in <module>
-    main()
-  File "D:\telusko\projects\telusko\manage.py", line 13, in main
-    raise ImportError(
-ImportError: Couldn't import Django. Arpip install djangostalled and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
->> st) PS D:\telusko\projects\telusko>
-Collecting django
-  Obtaining dependency information for django from https://files.pythonhosted.org/packages/a3/b8/f205f2b8c44c6cdc555c4f56bbe85ceef7f67c0cf1caa8abe078bb7e32bd/Django-5.1.2-py3-none-any.whl.metadata
-  Downloading Django-5.1.2-py3-none-any.whl.metadata (4.2 kB)
-Collecting asgiref<4,>=3.8.1 (from django)
-  Obtaining dependency information for asgiref<4,>=3.8.1 from https://files.pythonhosted.org/packages/39/e3/893e8757be2612e6c266d9bb58ad2e3651524b5b40cf56761e985a28b13e/asgiref-3.8.1-py3-none-any.whl.metadata
-  Using cached asgiref-3.8.1-py3-none-any.whl.metadata (9.3 kB)
-Collecting sqlparse>=0.3.1 (from django)
-  Obtaining dependency information for sqlparse>=0.3.1 from https://files.pythonhosted.org/packages/5d/a5/b2860373aa8de1e626b2bdfdd6df4355f0565b47e51f7d0c54fe70faf8fe/sqlparse-0.5.1-py3-none-any.whl.metadata
-  Downloading sqlparse-0.5.1-py3-none-any.whl.metadata (3.9 kB)
-Collecting tzdata (from django)
-  Obtaining dependency information for tzdata from https://files.pythonhosted.org/packages/a6/ab/7e5f53c3b9d14972843a647d8d7a853969a58aecc7559cb3267302c94774/tzdata-2024.2-py2.py3-none-any.whl.metadata
-  Downloading tzdata-2024.2-py2.py3-none-any.whl.metadata (1.4 kB)
-Downloading Django-5.1.2-py3-none-any.whl (8.3 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.3/8.3 MB 3.6 MB/s eta 0:00:00
-Using cached asgiref-3.8.1-py3-none-any.whl (23 kB)
-Downloading sqlparse-0.5.1-py3-none-any.whl (44 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 44.2/44.2 kB 2.1 MB/s eta 0:00:00
-Downloading tzdata-2024.2-py2.py3-none-any.whl (346 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 346.6/346.6 kB 10.5 MB/s eta 0:00:00
-Installing collected packages: tzdata, sqlparse, asgiref, django       
-Successfully installed asgiref-3.8.1 django-5.1.2 sqlparse-0.5.1 tzdata-2024.2
-
-[notice] A new release of pip is available: 23.2.1 -> 24.2
-[notice] To update, run: python.exe -m pip install --upgrade pip       
-(test) PS D:\telusko\projects\telusko> pip install django
->>                                     pip install django
-                                                         
-(test) PS D:\telusko\projects\telusko> python manage.py runserver
-Watching for file changes with StatReloader
-Performing system checks...
-
-System check identified no issues (0 silenced).
- 
+bash
+Copy code
+pip install django
+Notes
+If you encounter issues with the version of pip, upgrade it by running:
+bash
+Copy code
+python -m pip install --upgrade pip
+Ensure your virtual environment is activated before running Django commands.

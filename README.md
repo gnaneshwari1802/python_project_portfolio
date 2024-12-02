@@ -57,6 +57,8 @@ Create and activate a Python virtual environment to manage dependencies:
 
 ```bash
 # Create a new virtual environment
+ cd D:\telusko\telusko                                                                                                                      
+(base) PS D:\telusko\telusko> test\Scripts\activate
 python -m venv test
 
 # Activate the virtual environment
@@ -150,6 +152,12 @@ pip install django
 
 ```bash
 python -m pip install --upgrade pip
+pip install gunicorn uvicorn
+pip freeze > requirements.txt
+pip install fcntl
+python -m gunicorn telusko.asgi:application -k uvicorn.workers.UvicornWorker
+pip install dj-database-url
+pip install psycopg2-binary
 ```
 
 - **Virtual Environment**: Always ensure your virtual environment is activated before running Django commands.
